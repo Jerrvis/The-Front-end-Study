@@ -1,0 +1,28 @@
+#content{
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    line-height: 25px;
+    font-size: 12px;
+    border: 1px #000 solid;
+}
+ul,li{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+#content ul{
+    position: relative;
+
+}
+.text,.tipBg{
+    position: absolute;
+    width: 380px;
+    height: 25px;;
+    top: 200px;
+}
+.text{
+    color: azure;
+    z-index: 999; /*最高层级*/
+    opacity: 0.5; /*透明度*/
+}

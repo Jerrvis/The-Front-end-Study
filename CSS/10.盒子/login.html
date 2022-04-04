@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1,ul,li,a,body{
+            margin: 0;
+            padding:0;
+            text-decoration: none;
+        }
+        /*外边距能居中元素*/
+        #box{
+            width: 300px;
+            border: 1px solid red;
+            margin: 0 auto; /*上下为0 左右自动居中*/
+        }
+        h2{
+            background-color: #2fb89f;
+            font-size: 16px;
+            line-height: 30px;
+        }
+        form{
+            background: #FFC0CB;
+        }
+        div:nth-last-of-type(1) input{
+            border: 3px solid black;
+        }
+        div:nth-last-of-type(2) input{
+            border: 3px solid purple;
+        }
+
+    </style>
+</head>
+<body>
+    
+<div id="box">
+    <h2>会员登录</h2>
+    <form action="#">
+        <div>
+            <span>用户名：</span>
+            <input type="text">
+        </div>
+        <div>
+            <span>密码：</span>
+            <input type="text">
+        </div>
+        <div>
+            <span>邮箱：</span>
+            <input type="text">
+        </div>
+    </form>
+</div>
+</body>
+</html>

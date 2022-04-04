@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 表单绑定一个检测提交函数 true false
+  表单接受结果返回给 表单的onsubmit -->
+  <form action="https://www.baidu.com" method="post" onsubmit="return aaa()">
+    <p>
+      <span>用户名:</span><input type="text" id="username" name="username">
+    </p>
+    <p>
+      <span>密码:</span><input type="password" id="input-password"> 
+    </p>
+    <input type="hidden" id="md5-password" name="password">
+    <p>
+      <input type="radio" name="sex" value="man" id="boy">男
+      <input type="radio" name="sex" value="women" id="girl">女
+    </p>
+    <!-- 点击触发 -->
+    <button type="submit" onclick="aaa">提交</button>
+    
+  </form>
+<script>
+  function aaa(){
+    var uname = document.getElementById('username');
+    var pwd = document.getElementById('input-password');
+    var md5pwd = document.getElementById('md5-password');
+    console.log(uname.value);
+    console.log(pwd.value);
+    md5pwd.value = md5(pwd.value);
+
+    return true;//可以校验判断表单内容
+  }
+</script>
+</body>
+
+</html>

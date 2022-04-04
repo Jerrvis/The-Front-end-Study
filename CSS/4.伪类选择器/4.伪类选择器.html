@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* ul 第一个子元素 */
+        ul li:first-child{
+            background: beige;
+        }
+        /* ul 最后一个子元素 */
+        ul li:last-child{
+            background: green;
+        }
+
+        /* 选中p1,定位到父元素，选择当前的第一个元素 */
+        p:nth-child(1){
+            background: pink;
+        }
+        /* 选择父元素，下的P元素第二个 */
+        p:nth-of-type(2){
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p>p1</p>
+    <p class="active">p2</p>
+    <p>p3</p>
+    <ul>
+        <li>
+            li1
+        </li>
+        <li>
+            li2
+        </li>
+        <li>
+            li3
+        </li>
+    </ul>
+    <p class="active">p7</p>
+    <p class="active">p8</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<p id="ship">Ship</p>
+<div id="list">
+  <p class="battle">Battle</p>
+  <p class="aircraft">Aircraft</p>
+  <p class="destory">Destory</p>
+</div>
+
+<script>
+  var ship = document.getElementById('ship');
+  var sl = document.getElementById('list');
+  var ne = document.createElement('p');
+  ne.class = 'cruser';
+  ne.innerText = "Cruser";
+  sl.append(ne);
+  // 通过这个属性可以设置任意的值
+  var myScript = document.createElement('script');
+  myScript.setAttribute('type','text/javascript');
+  //
+  var body = document.getElementsByTagName('body');
+  body[0].style.background = 'pink';
+
+</script>
+</body>
+</html>

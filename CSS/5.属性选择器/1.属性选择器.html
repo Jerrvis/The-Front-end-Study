@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo a{
+            float: left;
+            display: block;
+            height: 50px;
+            width: 50px;
+
+            border-radius: 10px;
+            background: pink;
+            text-align: center;
+            color: gainsboro;
+            text-decoration: none;
+            margin-right: 5px;
+            font: bold 20px/50px Arial;
+        }
+
+        /* 存在id 属性的元素 */
+        a[id]{
+            background: yellow;
+        }
+        /* 存在id 且值为 first的元素*/
+        a[id=first]{
+            background: purple;
+        }
+        /*  *= 表示包含特定内容的值 */
+        a[href*="images"]{
+            background: green;
+        }
+        /* ^= 表示以特定内容开头的值 */
+        a[href^="images"]{
+            background: green;
+        }
+        /* $= 表示以特定内容开头的值 */
+        a[href$="jpg"]{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <p class="demo">
+        <a href="http://www.baidu.com" class="link">1</a>
+        <a href="" id="first" target="_blank">2</a>
+        <a href="" class="link">3</a>
+        <a href="images/123.png">4</a>
+        <a href="images/123.html">5</a>
+        <a href="images/123.jpg">6</a>
+        <a href="abc">7</a>
+        <a href="abc">8</a>
+        <a href="">9</a>
+        <a href="">0</a>
+    </p>
+</body>
+</html>

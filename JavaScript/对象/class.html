@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    class ship {
+      constructor(name) {
+        this.name = name;
+        this.level = 1;
+        this.class;
+      }
+
+      hello(){
+        alert('Hello')
+      }
+      study(){
+        this.level = this.level + 1;
+      }
+      
+    }
+
+
+
+    class destroyer extends ship{
+      constructor(name){
+        super(name);
+        this.shipType = 'Destroyer';
+
+      }
+
+      Lei() {
+        alert("发射鱼雷");
+      }
+    }
+    var Lafit = new destroyer('Lafit');
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
