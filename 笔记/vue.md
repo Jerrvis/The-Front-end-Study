@@ -5949,6 +5949,8 @@ npm run dev
       - 如果有重名, setup优先。
    2. setup不能是一个async函数，因为返回值不再是return的对象, 而是promise, 模板看不到return对象中的属性。（后期也可以返回一个Promise实例，但需要Suspense和异步组件的配合）
 
+
+
 ###  2.ref函数
 
 - 作用: 定义一个响应式的数据
@@ -6617,3 +6619,69 @@ npm run dev
   > 过滤器虽然这看起来很方便，但它需要一个自定义语法，打破大括号内表达式是 “只是 JavaScript” 的假设，这不仅有学习成本，而且有实现成本！建议用方法调用或计算属性去替换过滤器。
 
 - ......
+
+
+
+
+
+## 项目记录特性
+
+Vue3路由配置
+
+### 四、路由组件搭建
+
+安装vue-router 终端输入 ``` npm install --save vue-router ```
+
+配置路由文件
+
+vue3 中 main.js配置如下
+
+``` js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import router from '@/router'
+
+createApp(App).use(router).mount('#app')
+
+```
+
+
+
+vue3路由配置
+
+vue3中的路由要导入新方法来正常工作，其中使用 ``` createRouter ``` 和 ``` createWebHistory ``` 方法配置，createWebHistory创建routerhistory对象
+
+``` js
+// 配置路由 
+import {createRouter,createWebHistory} from 'vue-router';
+
+
+const routes = [
+  {
+    path:'/home',
+    component:()=> import('../pages/Home')
+  },
+  {
+    path:'/search',
+    component:()=> import('../pages/Search')
+  },
+  {
+    path:'/login',
+    component:()=> import('../pages/Login')
+  },
+  {
+    path:'/register',
+    component:()=> import('../pages/Register')
+  }
+]
+
+const routerHistory = createWebHistory()
+const router = createRouter({
+  history:routerHistory,
+  routes
+})
+
+export default router
+```
+
