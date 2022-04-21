@@ -5109,7 +5109,7 @@ module.exports = {
 
 
 
-### 基本使用
+### 4.基本使用
 
 
 
@@ -6628,7 +6628,7 @@ npm run dev
 
 Vue3路由配置
 
-### 四、路由组件搭建
+### 一、路由组件搭建
 
 安装vue-router 终端输入 ``` npm install --save vue-router ```
 
@@ -6683,5 +6683,94 @@ const router = createRouter({
 })
 
 export default router
+```
+
+
+
+
+
+***
+
+
+
+### 二、全局事件总线配置
+
+由于vue3中全局事件总线的部分api被删除仅保留emit，官方推荐使用mitt包来实现
+
+因此在项目终端中 输入 ``` npm i mitt ``` 来安装需要的mitt 
+
+
+
+在入口文件main.js中配置如下
+
+``` js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+// 全局事件总线 on... 函数
+import mitt from "mitt"
+
+const app = createApp(App);
+
+
+// 创建事件总线
+app.config.globalProperties.$bus = new mitt();
+
+app.mount('#app')
+```
+
+
+
+组件a中触发事件 ``` global1``` 
+
+``` vue
+<script>
+import { computed, getCurrentInstance } from '@vue/runtime-core';
+export default {
+  ... // 省略代码
+  setup(props,{ emit }) { // 传参
+    ... // 省略代码
+    // 组件内使用全局事件总线
+    const ins=getCurrentInstance()
+    const bus= ins.appContext.config.globalProperties.$bus
+
+    function fun1 (params){
+      bus.emit("global1",params)
+    }
+
+    return {
+      fun1
+    };
+  }
+};
+</script>
+```
+
+
+
+组件b中 挂载中监听事件并执行global
+
+``` vue
+<script>
+import { computed, getCurrentInstance } from '@vue/runtime-core';
+export default {
+  ... // 省略代码
+  setup() { // 传参
+    ... // 省略代码
+    // 组件内使用全局事件总线
+    const ins=getCurrentInstance()
+    const bus= ins.appContext.config.globalProperties.$bus
+
+    onMounted(()=>{
+        bus.on("blobal1",()=>{
+          console.log("执行事件代码")
+        })
+      })
+
+    return {
+    };
+  }
+};
+</script>
 ```
 

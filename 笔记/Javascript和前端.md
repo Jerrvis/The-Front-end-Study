@@ -1896,19 +1896,6 @@ helloworld.html
 
 
 
-## 对象
-
-每个属性之间使用逗号隔开，最后一个不需要
-
-``` js
-var ship = {
-    name:'Lafit',
-    age:15,
-    equip:[100,'lei'],
-    isClock:true
-}
-```
-
 
 
 
@@ -2181,7 +2168,7 @@ true
 
 ## 流程控制
 
-#### if 判断
+### if 判断
 
 ```js
 if (ship.age>30){
@@ -2196,7 +2183,7 @@ if (ship.age>30){
 
 
 
-#### while 循环
+### while 循环
 
 ``` js
 while(ship.age < 30){
@@ -2207,7 +2194,7 @@ while(ship.age < 30){
 
 
 
-#### for 循环
+### for 循环
 
 ``` js
 for (let i = 0; i < 100; i ++ ){
@@ -2217,7 +2204,7 @@ for (let i = 0; i < 100; i ++ ){
 
 
 
-#### 数组循环
+### 数组循环
 
 ``` js
 arr.forEach(function (value) {console.log(value)})
@@ -3380,5 +3367,250 @@ jQuery.fn.init [li#destoryer, prevObject: jQuery.fn.init(1)]
 ``` js
 $(window).width()
 $(window).height()
+```
+
+
+
+***
+
+
+
+## this
+
+解析器在调用函数每次都会向函数内部传递进一个隐含参数，
+
+这个参数就是 this，this指向一个对象，它指向上下文的对象
+
+
+
+``` js
+function fun(){
+    console.log(this);
+}
+
+var obj = {
+    sayname:fun
+}
+
+obj.saymname == fun // true
+obj.sayname // object Object
+fun // object window
+```
+
+1. 以函数形式调用时 this 指向 window
+2. 以方法形式调用时 this 指向 调用的对象
+
+
+
+
+
+``` js
+function fun(){
+    console.log(this.name);
+}
+
+var obj = {
+    name:'孙悟空',
+    sayname:fun
+}
+var obj2 = {
+    name:'沙和尚',
+    sayname:fun
+}
+
+obj.sayname() // 孙悟空
+obj2.sayname() // 沙和尚
+```
+
+
+
+***
+
+
+
+
+
+## 工厂方法构建对象
+
+
+
+``` js
+function createPerson(name,age){
+    var obj = new Object();
+    obj.name = name;
+    obj.age = age;
+    obj.sayName=function(){
+        alert(this.name);
+    }
+    return obj
+}
+
+var obj1 = createPerson('孙悟空', 18)
+var obj2 = createPerson('沙和尚'，28)
+
+console.log(obj1) // object Object
+console.log(obj2) // object Object
+obj1.name; // 孙悟空
+obj2.name; // 沙和尚
+```
+
+
+
+使用工厂方法创建的对象都是使用object 类型
+
+所以无法区分多种不同类型的对象
+
+
+
+***
+
+
+
+## 构造函数创建对象
+
+
+
+``` js
+function Person (name, age){
+    this.name = name;
+    this.age = age;
+	this.sayName= function(){
+      console.log(this.name);
+    }
+    this.sayThis = function(){
+        console.log(this);
+    }
+}
+
+function Dog(name, age){
+    this.name = name;
+    this.age = age;
+    this.sayName= function(){
+      console.log(this.name);
+    }
+}
+
+var sun = new Person("孙悟空",18);
+sun.sayThis(); // object Object
+sun.sayName(); // 孙悟空
+```
+
+
+
+构造函数执行流畅
+
+1. 创建一个新的对象
+2. 将新建的对象为函数中的this
+3. 朱行执行函数中的代码
+4. 将新建的对象作为返回值
+
+使用同一个构造函数创建的对象我们称之为一类对象
+
+通过某个构造函数创建的对象我们称之为该类的实例
+
+
+
+修改对象的方法让对象共享同一个方法
+
+能够优化性能
+
+``` js
+function Person (name, age){
+    this.name = name;
+    this.age = age;
+	this.sayName= function(){
+      console.log(this.name);
+    }
+    this.sayThis = fun;
+}
+
+function fun(){
+        console.log(this);
+    }
+```
+
+
+
+
+
+***
+
+
+
+## 箭头函数
+
+箭头函数时ES6中加入的新特性
+
+
+
+在普通函数中this它表示调用该函数的对象
+
+``` js
+// 常规函数：
+hello = function() {
+  document.getElementById("demo").innerHTML += this;
+}
+
+// window 对象调用该函数：
+window.addEventListener("load", hello);
+
+// button 对象调用该函数：
+document.getElementById("btn").addEventListener("click", hello);
+```
+
+
+
+而箭头函数的this指向该函数的拥有者
+
+``` js
+// 箭头函数：
+hello = () => {
+  document.getElementById("demo").innerHTML += this;
+}
+
+// window 对象调用该函数：
+window.addEventListener("load", hello);
+
+// button 对象调用该函数：
+document.getElementById("btn").addEventListener("click", hello);
+```
+
+
+
+***
+
+
+
+## 原型对象
+
+1. 每个函数都有一个原型对象属性(prototype)
+
+​		这个属性就是一个原型对象(的地址)
+
+2. 当函数通过构造函数调用的时候，它所创建的实例都有一个隐藏属性指向原型对象
+
+​		通过__ proto __可以查看
+
+3. 原型对象就相当于一个公共的区域，所有同一个类的实例都可以访问到这个原型对象，我们可以将对象中公有的内容，统一设置到原型对象中
+
+4. 当我们访问对象中的一个属性时，它会先去对象中寻找，找不到的时候就会去原型对象中寻找(如果仍没有，则去原型的原型中继续寻找)。如果不存在则返回 undefined
+
+5. 原型对象不仅可以添加属性也能够添加方法。
+
+
+
+``` js
+function MyClass(){}
+MyClass.prototype.name = "我是原型名字";
+
+var mc = new MyClass();
+
+// 查看是否有某个属性
+console.log('name' in mc) // true
+// 查看本体是否有某个属性
+console.log(mc.hasOwnProerty("name")) // false
+console.log(mc.hasOwnProerty("hasOwnProerty")) // false
+console.log(mc.__proto___.hasOwnProerty("hasOwnProerty")) // false
+console.log(mc.__proto__.__proto__.hasOwnProerty("hasOwnProerty")) // true
 ```
 

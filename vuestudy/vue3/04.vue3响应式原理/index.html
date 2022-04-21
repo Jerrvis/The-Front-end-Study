@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    let ship = {
+      name:'Laffey',
+      age:18
+    }
+
+    // vue3 响应式的原理
+    const s = new Proxy(ship,{
+      // 读取某个属性时调用
+      get(target,propName){
+        console.log(`有人读取了${target}的${propName}属性`)
+        return Reflect.get(target,propName)
+      },
+      // 修改或追加某个属性时调用
+      set(target,propName,value){
+        console.log(`有人修改了${target}的${propName}属性,我要去更新界面了`)
+        return Reflect.set(target,propName,value)
+      },
+      // 删除某个属性时调用
+      deleteProperty(target,propName){
+        console.log(`有人删除了${target}的${propName}属性,我要去更新界面了`)
+        return Reflect.deleteProperty(target,propName)
+      }
+    })
+
+    // vue2 响应式的原理
+    // let p = {}
+    // Object.defineProperty(p,'name',{
+    //   configurable:true, // 可被删除
+    //   get(){
+    //     console.log('有人调用了ship.name')
+    //     return ship.name
+    //   },
+    //   set(value){
+    //     console.log('有人修改了ship.name')
+    //     ship.name = value
+    //   }
+    // })
+
+
+    // 通过reflact
+
+    let obj = {
+      a:1,
+      b:2
+    }
+  </script>
+</body>
+// eslint-disable-next-line vue/comment-directive
+</html>
