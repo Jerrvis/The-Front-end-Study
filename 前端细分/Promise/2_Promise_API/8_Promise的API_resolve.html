@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const p = Promise.resolve('success')
+    // 如果传入的参数为 非Promise类型的对象，则返回结果为成功的Promise对象
+    // 如果传入的参数为 Promise类型的对象，则参数的结果决定了 resolve 返回的结果
+    console.log(p)
+
+    const p1 = Promise.resolve(new Promise((resolve,reject)=>{
+      reject('error')
+    }))
+    // console.log(p1)
+
+    p1.catch(reason=>{
+      console.log(reason)
+    })
+  </script>
+</body>
+</html>

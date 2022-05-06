@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./Promise.js"></script>
+</head>
+<body>
+  <button id="test">测试</button>
+  <script>
+    let p = new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve('slow')
+      },1000)      
+    })
+    let p2 = Promise.resolve(new Promise((resolve,reject)=>{
+      resolve('success')
+    }))
+    let p3 = new Promise((resolve,reject)=>{
+      resolve('fuck')
+    })
+   let result = Promise.race([p,p2,p3])
+   console.log(result)
+
+   let btn = document.getElementById('test')
+    btn.addEventListener('click',()=>{
+      console.log(result)
+    })
+  </script>
+</body>
+</html>

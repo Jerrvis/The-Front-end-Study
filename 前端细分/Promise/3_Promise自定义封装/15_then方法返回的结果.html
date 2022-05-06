@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let p = new Promise((resolve,reject)=>{
+
+      resolve('ok')
+      // reject(404)
+    })
+
+    // then 返回一个成功/失败的Promise
+    let res = p.then((value)=>{
+      console.log(value)
+      throw 'error'
+    },(reason)=>{
+      console.log(reason)
+    })
+
+    let res2 = res.then(value=>{
+
+    },reason=>{
+      console.log('res1 error')
+    })
+    console.log(p,'000')
+    console.log(res,'111')
+    console.log(res2,'222')
+  </script>
+</body>
+</html>
